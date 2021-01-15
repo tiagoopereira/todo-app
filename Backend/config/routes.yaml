@@ -1,0 +1,28 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+todolist:
+        path: /todo
+        controller: App\Controller\ToDoController::getAll
+        methods:
+            - GET
+todo:
+        path: /todo/{id}
+        controller: App\Controller\ToDoController::getOne
+        methods:
+            - GET
+create_todo:
+        path: /todo
+        controller: App\Controller\ToDoController::create
+        methods:
+            - POST
+update_todo:
+        path: /todo/{id}
+        controller: App\Controller\ToDoController::update
+        methods:
+            - PUT
+delete_todo:
+        path: /todo/{id}
+        controller: App\Controller\ToDoController::delete
+        methods: 
+            - DELETE
