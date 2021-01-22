@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="toDoApp">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <title>ToDo App</title>
+</head>
+<body ng-controller="toDoCtrl">
+    <div class="container">
+        <h1>ToDo App</h1>
+        <form name="toDoForm" ng-submit="submit()" class="add">
+            <label for="description">New ToDo</label>
+            <input type="text" id="description" name="description" placeholder="ex: Work out, read a book..." ng-model="description"/>
+            <button class="btn">Add ToDo</button>
+        </form>
+        <div class="todo-list">
+            <h4>ToDo List</h4>
+            <div class="todo-item" ng-repeat="toDo in toDoList">
+                <span>{{ toDo.description }}</span>
+                <button class="btn" ng-click="deleteToDo(toDo.id)">Remove</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+    <script src="js/Controller/toDoCtrl.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #222;
+    color: #CCC;
+    font-family: 'Work Sans', sans-serif;
+}
+
+div.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 30px;
+}
+
+div.container > h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    color: #222;
+    background-color: #B19CD9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* START FORM STYLE */
+form.add {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+form.add > label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+form.add > input#description {
+    height: 30px;
+    padding: 5px 10px;
+    outline: none;
+    background-color: inherit;
+    border: 2px solid #555;
+    border-radius: 5px;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    color: #CCC;
+}
+
+form.add > button.btn {
+    height: 40px;
+    padding: 5px;
+    margin-top: 5px;
+    font-size: 12pt;
+}
+/* END FORM STYLE */
+
+/* START LIST STYLE */
+div.todo-list {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 15px;
+}
+
+div.todo-list > h4 {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    border-bottom: 2px solid #555;
+    padding-bottom: 5px;
+    margin-bottom: 14px;
+}
+
+div.todo-item {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 92%;
+    border: 2px solid #555;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+div.todo-item > button.btn {
+    font-size: 9pt;
+    padding: 5px 10px;
+}
+/* END LIST STYLE */
