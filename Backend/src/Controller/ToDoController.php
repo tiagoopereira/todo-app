@@ -64,9 +64,7 @@ class ToDoController extends AbstractController
         $newToDo = $this->toDoService->createEntity($json);
         $existingToDo = $this->toDoRepository->find($id);
 
-        $existingToDo->setTitle($newToDo->getTitle());
         $existingToDo->setDescription($newToDo->getDescription());
-        $existingToDo->setFinished($newToDo->getFinished());
 
         $this->entityManager->flush();
 
