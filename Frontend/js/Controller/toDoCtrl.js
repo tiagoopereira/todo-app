@@ -9,13 +9,16 @@ angular.module("toDoApp").controller("toDoCtrl", function($scope, $http) {
     };
 
     $scope.submit = function() {
-        $http({
-            method: 'POST',
-            url: 'http://localhost/todo',
-            data: { description: $scope.description }
-        }).then(function(response) {
-            $scope.toDoList.push(response.data);
-        });
+        if ($scope.description) {
+            $http({
+                method: 'POST',
+                url: 'http://localhost/todo',
+                data: { description: $scope.description }
+            }).then(function(response) {
+                $scope.toDoList.push(response.data);
+                $scope.description = "";
+            });
+        }
     };
 
     $scope.deleteToDo = function(id) {

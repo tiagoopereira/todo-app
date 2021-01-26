@@ -10,15 +10,18 @@
     <div class="container">
         <h1>ToDo App</h1>
         <form name="toDoForm" ng-submit="submit()" class="add">
-            <label for="description">New ToDo</label>
-            <input type="text" id="description" name="description" placeholder="ex: Work out, read a book..." ng-model="description"/>
-            <button class="btn">Add ToDo</button>
+            <label for="description">New ToDo </label>
+            <input type="text" id="description" name="description" placeholder="ex: Work out, read a book..." ng-model="description" ng-required="true"/>
+            <button class="btn" ng-disabled="toDoForm.$invalid" ng-class="{ disabled: toDoForm.$invalid }">Add ToDo</button>
         </form>
         <div class="todo-list">
             <h4>ToDo List</h4>
-            <div class="todo-item" ng-repeat="toDo in toDoList">
+            <div class="todo-item" ng-if="toDoList.length" ng-repeat="toDo in toDoList">
                 <span>{{ toDo.description }}</span>
                 <button class="btn" ng-click="deleteToDo(toDo.id)">Remove</button>
+            </div>
+            <div ng-if="!toDoList.length" style="text-align: center;">
+                Add a ToDo to start the list!
             </div>
         </div>
     </div>

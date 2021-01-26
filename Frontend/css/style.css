@@ -37,6 +37,18 @@ div.container > h1 {
     font-weight: bold;
 }
 
+.btn:hover {
+    background-color: rgba(177, 156, 220, .6);
+    color: #BBB;
+}
+
+.disabled, 
+.disabled:hover {
+    background-color: rgba(177, 156, 200, .5);
+    color: #222;
+    cursor: unset;
+}
+
 /* START FORM STYLE */
 form.add {
     display: flex;
