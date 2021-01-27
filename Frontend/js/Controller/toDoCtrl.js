@@ -4,7 +4,7 @@ angular.module("toDoApp").controller("toDoCtrl", function($scope, $http) {
             method: 'GET',
             url: 'http://localhost/todo'
         }).then(function(response) {
-            $scope.toDoList = response.data;
+            $scope.toDoList = response.data.content;
         });
     };
 
@@ -15,7 +15,7 @@ angular.module("toDoApp").controller("toDoCtrl", function($scope, $http) {
                 url: 'http://localhost/todo',
                 data: { description: $scope.description }
             }).then(function(response) {
-                $scope.toDoList.push(response.data);
+                $scope.toDoList.push(response.data.content);
                 $scope.description = "";
             });
         }
