@@ -2,8 +2,10 @@
 namespace App\Controller;
 
 use App\Repository\ToDoRepository;
+use App\Service\ResponseService;
 use App\Service\ToDoService;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,42 +35,57 @@ class ToDoController extends AbstractController
 
     public function create(Request $request): Response
     {
-        $json = $request->getContent();
-        $toDo = $this->toDoService->createEntity($json);
+        try {
+            $json = $request->getContent();
+            $toDo = $this->toDoService->createEntity($json);
 
-        $this->entityManager->persist($toDo);
-        $this->entityManager->flush();
+            $this->entityManager->persist($toDo);
+            $this->entityManager->flush();
 
-        return new JsonResponse($toDo, Response::HTTP_CREATED);
+            $response = new ResponseService(true, $toDo, Response::HTTP_CREATED);
+
+            return $response->getResponse();
+        } catch (Exception $e) {
+            $response = new ResponseService(false, $e->getMessage(), Response::HTTP_BAD_REQUEST);
+            return $response->getResponse();
+        }
     }
 
     public function getAll(): Response
     {
         $toDoList = $this->toDoRepository->findAll();
 
-        return new JsonResponse($toDoList, Response::HTTP_OK);
+        $response = new ResponseService(true, $toDoList, Response::HTTP_OK);
+        return $response->getResponse();
     }
 
     public function getOne(int $id): Response
     {
         $toDo = $this->toDoRepository->find($id);
 
-        return new JsonResponse($toDo, Response::HTTP_OK);
+        $response = new ResponseService(true, $toDo, Response::HTTP_OK);
+        return $response->getResponse();
     }
 
     public function update(int $id, Request $request): Response
     {
-        $json = $request->getContent();
+        try {
+            $json = $request->getContent();
 
-        /** @var ToDo $newToDo */
-        $newToDo = $this->toDoService->createEntity($json);
-        $existingToDo = $this->toDoRepository->find($id);
+            /** @var ToDo $newToDo */
+            $newToDo = $this->toDoService->createEntity($json);
+            $existingToDo = $this->toDoRepository->find($id);
 
-        $existingToDo->setDescription($newToDo->getDescription());
+            $existingToDo->setDescription($newToDo->getDescription());
 
-        $this->entityManager->flush();
+            $this->entityManager->flush();
 
-        return new JsonResponse($existingToDo, Response::HTTP_OK);
+            $response = new ResponseService(true, $existingToDo, Response::HTTP_OK);
+            return $response->getResponse();
+        } catch (Exception $e) {
+            $response = new ResponseService(false, $e->getMessage(), Response::HTTP_BAD_REQUEST);
+            return $response->getResponse();
+        }
     }
 
     public function delete(int $id): Response
@@ -78,6 +95,7 @@ class ToDoController extends AbstractController
         $this->entityManager->remove($toDo);
         $this->entityManager->flush();
 
-        return new Response('', Response::HTTP_NO_CONTENT);
+        $response = new ResponseService(true, "", Response::HTTP_NO_CONTENT);
+        return $response->getResponse();
     }
 }
