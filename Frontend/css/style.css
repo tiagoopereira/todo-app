@@ -49,11 +49,15 @@ div.container > h1 {
     cursor: unset;
 }
 
-/* START FORM STYLE */
-form.add {
+form.add,
+div.todo-list {
     display: flex;
     flex-direction: column;
     width: 80%;
+}
+
+/* START FORM STYLE */
+form.add {
     margin-top: 10px;
     margin-bottom: 15px;
 }
@@ -86,9 +90,6 @@ form.add > button.btn {
 
 /* START LIST STYLE */
 div.todo-list {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
     margin-top: 15px;
 }
 
@@ -119,3 +120,27 @@ div.todo-item > button.btn {
     padding: 5px 10px;
 }
 /* END LIST STYLE */
+
+/* REPONSIVITY */
+@media (max-width: 1300px) {
+    div.container {
+        width: 70%;
+    }
+}
+
+@media (max-width: 1000px) {
+    div.container {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    form.add,
+    div.todo-list {
+        width: 100%;
+    }
+
+    div.todo-item {
+        width: 88%;
+    }
+}
