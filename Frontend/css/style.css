@@ -68,6 +68,10 @@ form.add > label {
     margin-bottom: 2px;
 }
 
+form.add > label > span {
+    color: #FF0000;
+}
+
 form.add > input#description {
     height: 30px;
     padding: 5px 10px;

@@ -13,7 +13,7 @@
     <div class="container">
         <h1>ToDo App</h1>
         <form name="toDoForm" ng-submit="submit()" class="add">
-            <label for="description">New ToDo </label>
+            <label for="description">New ToDo <span>*</span> </label>
             <input type="text" id="description" name="description" placeholder="ex: Work out, read a book..." ng-model="description" ng-required="true"/>
             <button class="btn" ng-disabled="toDoForm.$invalid" ng-class="{ disabled: toDoForm.$invalid }">Add ToDo</button>
         </form>
