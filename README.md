@@ -1,4 +1,4 @@
-# ToDoApp
+# ToDo App
 
 ## Execução
 - Backend (Backend/):
